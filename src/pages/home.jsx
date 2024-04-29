@@ -9,20 +9,25 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="bg-white mx-auto text-black h-full w-full">
+      <main className="bg-white mx-auto text-black h-full w-full" >
  
-          <div className="flex flex-col justify-items-center ">
+          <div className="flex flex-col justify-items-center "style={{marginTop:"50px"}}>
           
           <div>
-          <h2 className="font-bold">
+          <h2 className="font-bold m-4 flex justify-center">
             Comment utiliser les codes QR pour le suivi des présences
             </h2>
-          <img
+            <div className="flex justify-center">
+            <img
               src={Img1}
               alt=""
             />
+            </div>
+          
           </div>
-            <span>
+          <div className="flex justify-center ">
+
+          <span>
               La participation ou l'enregistrement à un événement est peut-être
               le critère d'engagement le plus important.
               <br /> En effet, il s'agit de la première interaction en face à
@@ -52,18 +57,20 @@ function Home() {
               <br /> un scanner de codes QR, qui peut être un smartphone.
             </span>
           </div>
+          </div>
         
           <div className="flex flex-col justify-items-center ">
-            <h2 className="font-bold">
+            <h2 className="font-bold flex justify-center">
               Avantages de l'utilisation de QR Codes pour l'enregistrement et le
               suivi des présences
             </h2>
-            <div>
+            <div className="flex justify-center " >
               <img
                 src={Img2}
                 alt=""
               />
-            </div>
+              </div>
+            <div className="flex justify-center ">
             <span>
               Voici les principales les avantages de l'utilisation des codes QR
               pour suivre les présences ou faciliter les enregistrements :
@@ -93,18 +100,22 @@ function Home() {
               portables pour saisir les données de
               <br /> participation et les confirmer.
             </span>
+              
+            </div>
+            
           </div>
 
           <div className="flex flex-col justify-items-center ">
-            <h2 className="font-bold">
+            <h2 className="font-bold flex justify-center ">
               Comment les codes QR pour Suivi des présences au travail ?
               </h2>
-            <div>
+            <div className="flex justify-center " >
               <img
                 src={Img3}
                 alt=""
               />
             </div>
+            <div className="flex justify-center ">
             <p>
               Lorsqu'un participant scanne le code QR imprimé, les détails de
               l'événement sont affichés, ce qui implique le lieu,
@@ -118,18 +129,21 @@ function Home() {
               le participant est ensuite invité à saisir son nom ou son numéro
               d'identification et à le soumettre.
             </span>
+            </div>
+            
           </div>
     
         <div className="flex flex-col justify-items-center ">
-          <h2 className="font-bold"> 
+          <h2 className="font-bold flex justify-center"> 
           Cas d'utilisation des codes QR pour Suivi des présences
           </h2>
-          <div>
+          <div className="flex justify-center ">
           <img
             src={Img4}
             alt=""
           />
           </div>
+          <div>
           <span>
             Il existe de nombreuses entités pour qui l'utilisation de codes QR
             pour l'enregistrement ou la présence est utile
@@ -167,6 +181,8 @@ function Home() {
             Un travailleur indépendant pour le suivi des heures
             <br /> de travail mensuelles de son équipe
           </p>
+          </div>
+          
         </div>
 
         <div className="flex flex-col">
