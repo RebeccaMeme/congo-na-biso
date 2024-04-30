@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './pages/home';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import MyForm from './pages/login';
+import "./App.css"
 import FormulaireInscription from './pages/register';
 function App() {
   return (
