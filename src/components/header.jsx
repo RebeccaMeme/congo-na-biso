@@ -12,7 +12,7 @@ function Header() {
     <div className=" fixed bg-black shadow-md text-white text-sm  justify-between flex w-full top-0">
       <img src={Logo} alt="" className="ml-20 w-[33px] h-[33px]" />
       <div className="menu flex gap-8 px-20 text-center items-center">
-        <NavLink to={`/${Home}`}>
+        <NavLink to='/'>
           <h2 className="page_acceuil hover:text-blue-700 ">Home</h2>
         </NavLink>
         <NavLink to={`/suivi`}>
