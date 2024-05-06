@@ -1,124 +1,180 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 function FormulaireInscription() {
-  
   const {
     register,
     formState: { errors },
-    handleSubmit,
+    // handleSubmit,
   } = useForm();
+  const [Numero_matricule, setNumero_matricule] = useState(null);
+  const [nom, setNon] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [sexe, setSexe] = useState("");
+  const [etat_civile, setEtat_civile] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState(null);
+  console.log(nom,prenom,sexe,etat_civile,email,telephone);
 
-  const navigate = useNavigate();
-  // Option pour la validation du formulaire
+ 
+  const onSubmit = async (e) => {
 
-  const onSubmit = (data) => {
-  
-    // const estInscrit = validateCredentials(formData);
-    const initialFormData = {
-      Numero_matricule: data.Numero_matricule, 
-      nom : data.nom, 
-      prenom: data.prenom , 
-      sexe: data.sexe, 
-      email: data.email, 
-      password: data.password, 
-      telephone: data.telephone, 
-      etat_civile: data.etat_civile, 
-      id_serv: data.id_service, 
-      id_fonct: data.id_fonction, 
-      id_grad: data.id_grade
-    };
-    console.log('data',initialFormData)
-    // if (estInscrit) {
-    //   navigate("/login"); // Rediriger vers la page de connexion s'il est déjà inscrit
-    //   return; // Empêcher la soumission ultérieure du formulaire
-    // }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/agents",
+        {
+            Numero_matricule: Numero_matricule,
+            nom: nom,
+            prenom: prenom,
+            sexe: sexe,
+            email: email,
+            telephone: telephone,
+            etat_civile: etat_civile,
+            password: password,
+          },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // Include credentials for cross-site requests
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(response.data);
+        // setUserInfo(response.data); // Access data directly from response
+        // setRedirect(true);
+      } else {
+        alert("wrong credentials");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
   };
+  
+    return (
+      <>
+        <div className=" w-full h-screen flex flex-row gap-10">
+          <div className="mobil bg-[#5E5BFF] text-white text-center flex flex-col ml-5 pl-5 my-5 justify-center  gap-8 rounded w-[80rem]">
+            <h1 className="fond-bold text-2xl mb-3">Congo na biso</h1>
+            <div className="flex flex-col">
+              <h2>DOWNLOAD THE APP</h2>
+              <span>Welcame to our app</span>
+              <span>Welcame to our app</span>
+              <span>Welcame to our app</span>
+            </div>
+          </div>
 
-  return (
-    <>
-      <div className=" w-full h-ful flex flex-row gap-10">
-        
-        <div className="bg-blue-400 flex flex-col ml-5 mt-2 text-center  border mx-auto rounded w-[40rem] h-[65rem] gap-4 ">
-          <h1 className="fond-bold text-2xl mb-3">Congo na biso</h1>
-          <h2>DOWNLOAD THE APP</h2>
-          <span>Welcame to our app</span>
-          <span>Welcame to our app</span>
-          <span>Welcame to our app</span>
-        </div>
-
-        <div className="flex flex-col justify-items-center p-y-4 w-[80rem] h-[20rem] ml-4 gap-6  mr-5">
-          <h1 className="fond-bold text-2xl">Créer un compte</h1>
-          <span>
-            {" "}
-            Vous avez dejà un compte?
-            <Link className="text-blue-500" to="/login">
-              Connectez-vous
-            </Link>{" "}
-          </span>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col text-black bg-white w-full  h-full flex-1 focus:outline-none  gap-10 h-25 w-30"
-          >
-            <div className=" flex flex-col gap-10 h-25 w-15 text-align: center">
+          <div className="w-[80rem] rounded mx-4 my-auto gap-8">
+            <h1 className="text-center text-2xl">Créer un compte</h1>
+            <span className="text-center ">
+              Vous avez dejà un compte?
+              <Link className="text-blue-500" to="/login">
+                {" "}
+                Connectez-vous
+              </Link>
+            </span>
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-8 items-center mt-4"
+            >
               <input
                 type="text"
                 name="Numero_matricule"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("Numero_matricule", { required: true, pattern: /^[0-9]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
+                {...register("Numero_matricule", {
+                  required: true,
+                  pattern: /^[0-9]+$/i,
+                })}
                 placeholder="Numero_matricule"
+                onChange={(e) => {
+                  setNumero_matricule(e.target.value);
+                }}
               />
               <input
                 type="text"
                 name="nom"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("nom", { required: true, pattern: /^[A-Za-z]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
+                {...register("nom", {
+                  required: true,
+                  pattern: /^[A-Za-z]+$/i,
+                })}
                 placeholder="nom"
+                onChange={(e) => {
+                  setNon(e.target.value);
+                }}
               />
               <input
                 type="text"
                 name="prenom"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("prenom", { required: true, pattern: /^[A-Za-z]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
+                {...register("prenom", {
+                  required: true,
+                  pattern: /^[A-Za-z]+$/i,
+                })}
                 placeholder="prenom"
+                onChange={(e) => {
+                  setPrenom(e.target.value);
+                }}
               />
               <input
                 type="text"
                 name="email"
-                className="input rounded text-gray-400 border border-blue-700 "
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
                 {...register("email", { required: true })}
                 placeholder="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
-              <input
+              {/* <input
                 type="text"
                 name="password"
                 className="input rounded text-gray-400 border border-blue-700 "
                 {...register("password", { required: true })}
                 placeholder="password"
-              />
+              /> */}
               <input
                 type="text"
                 name="sexe"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("sexe", { required: true, pattern: /^[A-Za-z]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
+                {...register("sexe", {
+                  required: true,
+                  pattern: /^[A-Za-z]+$/i,
+                })}
                 placeholder="sexe"
+                onChange={(e) => {
+                  setSexe(e.target.value);
+                }}
               />
               <input
                 type="text"
                 name="etat_civile"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("etat_civile", { required: true, pattern: /^[A-Za-z]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5"
+                {...register("etat_civile", {
+                  required: true,
+                  pattern: /^[A-Za-z]+$/i,
+                })}
                 placeholder="etat_civile"
+                onChange={(e) => {
+                  setEtat_civile(e.target.value);
+                }}
               />
               <input
                 type="text"
                 name="telephone"
-                className="input rounded text-gray-400 border border-blue-700 "
-                {...register("telephone", { required: true, pattern: /^[0-9]+$/i })}
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
+                {...register("telephone", {
+                  required: true,
+                  pattern: /^[0-9]+$/i,
+                })}
                 placeholder="telephone"
+                onChange={(e) => {
+                  setTelephone(e.target.value);
+                }}
               />
-               <input
+              {/* <input
                 type="text"
                 name="id_service"
                 className="input rounded text-gray-400 border border-blue-700 "
@@ -138,17 +194,18 @@ function FormulaireInscription() {
                 className="input rounded text-gray-400 border border-blue-700 "
                 {...register("id_grade", { required: true, pattern: /^[0-9]+$/i })}
                 placeholder="id_grade"
-              />
+              /> */}
               <div>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-14 rounded">
+                <button className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
                   S'inscrire
                 </button>
               </div>
-            </div>
-          </form>
+              {/* </div> */}
+            </form>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+ 
 }
 export default FormulaireInscription;
