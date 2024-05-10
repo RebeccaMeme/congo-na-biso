@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const MyForm = () => {
-  const [telephone, setTelephone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const navigation = useNavigate();
   const [message, setMessage] = useState(false);
@@ -12,7 +12,7 @@ const MyForm = () => {
     e.preventDefault(); // validation des champs du formulaire
     axios
       .post("http://localhost:5000/agents/login", {
-        telephone: telephone,
+        email: email,
         password: password,
       })
       .then((response) => {
@@ -61,10 +61,10 @@ const MyForm = () => {
               className=" input rounded text-gray-400 border border-blue-700 p-6"
               type="text"
               name="Email"
-              defaultValue={telephone}
+              defaultValue={email}
               placeholder="Username"
               onChange={(e) => {
-                setTelephone(e.target.value);
+                setEmail(e.target.value);
               }}
             />
             <input

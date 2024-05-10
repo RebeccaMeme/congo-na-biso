@@ -16,15 +16,12 @@ function FormulaireInscription() {
   const [etat_civile, setEtat_civile] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState(null);
-  console.log(nom,prenom,sexe,etat_civile,email,telephone);
-
  
   const onSubmit = async (e) => {
 
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/agents",
+      const response = await axios.post("http://localhost:5000/agents",
         {
             Numero_matricule: Numero_matricule,
             nom: nom,
@@ -35,16 +32,17 @@ function FormulaireInscription() {
             etat_civile: etat_civile,
             password: password,
           },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true, // Include credentials for cross-site requests
-        }
+        // {
+        //   headers: { "Content-Type": "application/json" },
+        //   withCredentials: true, // Include credentials for cross-site requests
+        // }
+        
       );
 
       if (response.status === 200) {
         console.log(response.data);
-        // setUserInfo(response.data); // Access data directly from response
-        // setRedirect(true);
+        setUserInfo(response.data); // Access data directly from response
+        setRedirect(true);
       } else {
         alert("wrong credentials");
       }
@@ -128,13 +126,13 @@ function FormulaireInscription() {
                   setEmail(e.target.value);
                 }}
               />
-              {/* <input
-                type="text"
+              <input
+                type="password"
                 name="password"
                 className="input rounded text-gray-400 border border-blue-700 "
                 {...register("password", { required: true })}
                 placeholder="password"
-              /> */}
+              />
               <input
                 type="text"
                 name="sexe"

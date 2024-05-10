@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyForm from "./pages/login";
 import "./App.css";
 import FormulaireInscription from "./pages/register";
-import Presence from "./components/presence";
-import FormulaireDemandeAbsence from "./components/FormulaireDemandeAbsence";
 import Suivi from "./pages/suivi";
 function App() {
   return (
@@ -15,8 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<MyForm />} />
           <Route path="/register" element={<FormulaireInscription />} />
-          {/* <Route path="/suivi" element={<Presence />} /> */}
-          <Route path="/suivi" element={<FormulaireDemandeAbsence />} />
+           <Route path="/suivi" element={<Suivi />} /> 
         </Routes>
       </BrowserRouter>
     </>
