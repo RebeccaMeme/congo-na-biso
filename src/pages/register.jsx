@@ -16,27 +16,25 @@ function FormulaireInscription() {
   const [etat_civile, setEtat_civile] = useState("");
   const [email, setEmail] = useState("");
   const [telephone, setTelephone] = useState(null);
- 
+
   const onSubmit = async (e) => {
-
-
     try {
-      const response = await axios.post("http://localhost:5000/agents",
+      const response = await axios.post(
+        "http://localhost:5000/agents",
         {
-            Numero_matricule: Numero_matricule,
-            nom: nom,
-            prenom: prenom,
-            sexe: sexe,
-            email: email,
-            telephone: telephone,
-            etat_civile: etat_civile,
-            password: password,
-          },
+          Numero_matricule: Numero_matricule,
+          nom: nom,
+          prenom: prenom,
+          sexe: sexe,
+          email: email,
+          telephone: telephone,
+          etat_civile: etat_civile,
+          password: password,
+        }
         // {
         //   headers: { "Content-Type": "application/json" },
         //   withCredentials: true, // Include credentials for cross-site requests
         // }
-        
       );
 
       if (response.status === 200) {
@@ -50,33 +48,35 @@ function FormulaireInscription() {
       console.error("Login error:", error);
     }
   };
-  
-    return (
-      <>
-        <div className=" w-full h-screen flex flex-row gap-10">
-          <div className="mobil bg-[#5E5BFF] text-white text-center flex flex-col ml-5 pl-5 my-5 justify-center  gap-8 rounded w-[80rem]">
-            <h1 className="fond-bold text-2xl mb-3">Congo na biso</h1>
-            <div className="flex flex-col">
-              <h2>DOWNLOAD THE APP</h2>
-              <span>Welcame to our app</span>
-              <span>Welcame to our app</span>
-              <span>Welcame to our app</span>
-            </div>
-          </div>
 
-          <div className="w-[80rem] rounded mx-4 my-auto gap-8">
-            <h1 className="text-center text-2xl">Créer un compte</h1>
-            <span className="text-center ">
-              Vous avez dejà un compte?
-              <Link className="text-blue-500" to="/login">
-                {" "}
-                Connectez-vous
-              </Link>
-            </span>
-            <form
-              onSubmit={onSubmit}
-              className="flex flex-col gap-8 items-center mt-4"
-            >
+  return (
+    <>
+      <div className=" w-full h-screen flex flex-row gap-10">
+        <div className="mobil bg-[#5E5BFF] text-white text-center flex flex-col ml-5 pl-5 my-5 justify-center  gap-8 rounded w-[80rem]">
+          <h1 className="fond-bold text-2xl mb-3">Congo na biso</h1>
+          <div className="flex flex-col">
+            <h2>DOWNLOAD THE APP</h2>
+            <span>Welcame to our app</span>
+            <span>Welcame to our app</span>
+            <span>Welcame to our app</span>
+          </div>
+        </div>
+
+        <div className="w-[80rem] rounded mx-4 my-auto gap-8">
+          <h1 className="text-center text-2xl">Créer un compte</h1>
+          <span className="text-center ">
+            Vous avez dejà un compte?
+            <Link className="text-blue-500" to="/login">
+              {" "}
+              Connectez-vous
+            </Link>
+          </span>
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-8 items-center mt-4"
+          >
+            <div className="flex flex-col">
+              <span> Numero matricule</span>
               <input
                 type="text"
                 name="Numero_matricule"
@@ -90,6 +90,9 @@ function FormulaireInscription() {
                   setNumero_matricule(e.target.value);
                 }}
               />
+            </div>
+            <div className="flex flex-col">
+              <span> Nom</span>
               <input
                 type="text"
                 name="nom"
@@ -98,11 +101,13 @@ function FormulaireInscription() {
                   required: true,
                   pattern: /^[A-Za-z]+$/i,
                 })}
-                placeholder="nom"
                 onChange={(e) => {
                   setNon(e.target.value);
                 }}
               />
+            </div>
+            <div className="flex flex-col">
+              <span> Prenom</span>
               <input
                 type="text"
                 name="prenom"
@@ -111,11 +116,13 @@ function FormulaireInscription() {
                   required: true,
                   pattern: /^[A-Za-z]+$/i,
                 })}
-                placeholder="prenom"
                 onChange={(e) => {
                   setPrenom(e.target.value);
                 }}
               />
+            </div>
+            <div className="flex flex-col">
+              <span> email</span>
               <input
                 type="text"
                 name="email"
@@ -126,15 +133,20 @@ function FormulaireInscription() {
                   setEmail(e.target.value);
                 }}
               />
+            </div>
+            <div className="flex flex-col">
+              <span> Password</span>
               <input
                 type="password"
-                name="password"
+                name="<span> email</span>"
                 className="input rounded text-gray-400 border border-blue-700 "
                 {...register("password", { required: true })}
                 placeholder="password"
               />
-              <input
-                type="text"
+            </div>
+            <div className="flex flex-col">
+              <span>Sexe</span>
+              <select
                 name="sexe"
                 className="input rounded text-gray-400 border border-blue-700 p-5 "
                 {...register("sexe", {
@@ -142,23 +154,31 @@ function FormulaireInscription() {
                   pattern: /^[A-Za-z]+$/i,
                 })}
                 placeholder="sexe"
-                onChange={(e) => {
-                  setSexe(e.target.value);
-                }}
-              />
-              <input
-                type="text"
+              >
+                <option>Select genre</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <span>Etat civile</span>
+              <select
                 name="etat_civile"
-                className="input rounded text-gray-400 border border-blue-700 p-5"
+                className="input rounded text-gray-400 border border-blue-700 p-5 "
                 {...register("etat_civile", {
                   required: true,
                   pattern: /^[A-Za-z]+$/i,
                 })}
-                placeholder="etat_civile"
                 onChange={(e) => {
                   setEtat_civile(e.target.value);
                 }}
-              />
+              >
+                <option value="M">Marié</option>
+                <option value="F">Celibataire</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <span>Telephone</span>
               <input
                 type="text"
                 name="telephone"
@@ -172,7 +192,8 @@ function FormulaireInscription() {
                   setTelephone(e.target.value);
                 }}
               />
-              {/* <input
+            </div>
+            {/* <input
                 type="text"
                 name="id_service"
                 className="input rounded text-gray-400 border border-blue-700 "
@@ -193,17 +214,16 @@ function FormulaireInscription() {
                 {...register("id_grade", { required: true, pattern: /^[0-9]+$/i })}
                 placeholder="id_grade"
               /> */}
-              <div>
-                <button className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
-                  S'inscrire
-                </button>
-              </div>
-              {/* </div> */}
-            </form>
-          </div>
+            <div>
+              <button className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
+                S'inscrire
+              </button>
+            </div>
+            {/* </div> */}
+          </form>
         </div>
-      </>
-    );
- 
+      </div>
+    </>
+  );
 }
 export default FormulaireInscription;
