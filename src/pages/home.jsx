@@ -9,20 +9,20 @@ function Home() {
   return (
     <>
       <Header />
-      <main className="bg-white mx-auto text-black h-full w-full">
+      <main className="bg-white max-w-[81.25em] mx-auto text-black h-full pt-4">
         <div
           className="flex flex-col justify-items-center "
-          style={{ marginTop: "50px" }}
+          
         >
-          <div className="w-[1180px] my-auto mx-auto">
-            <h1 className="font-bold m-4 flex justify-center text-3xl">
+          <div className=" my-auto mx-auto ">
+            <h1 className="font-bold m-4 flex justify-center text-2xl">
               Comment utiliser les codes QR pour le suivi des présences
             </h1>
-            <div className="flex gap-4">
-              <div className=" w-[50%] ">
+            <div className="flex gap-10 flex-wrap ">
+              <div className="flex-1">
                 <img src={Img1} alt="" className="rounded-md" />
               </div>
-              <div className="w-[50%]  pt-6">
+              <div className="flex-1 pt-6">
                 <p className="text-justify">
                   La participation ou l'enregistrement à un événement est
                   peut-êtrle critère d'engagement le plus importantEn effet, il
@@ -52,8 +52,8 @@ function Home() {
           className="flex flex-col justify-items-center "
           style={{ marginTop: "50px" }}
         >
-          <div className="w-[1180px] my-auto mx-auto">
-            <h2 className="font-bold m-4 flex justify-center">
+          <div className=" my-auto mx-auto">
+            <h2 className="font-bold pb-3 flex justify-center text-2xl">
               Avantages de l'utilisation de QR Codes pour l'enregistrement et le
               suivi des présences
             </h2>
@@ -92,8 +92,8 @@ function Home() {
           className="flex flex-col justify-items-center "
           style={{ marginTop: "50px" }}
         >
-          <div className="w-[1180px] my-auto mx-auto">
-            <h2 className="font-bold m-4 flex justify-center ">
+          <div className=" my-auto mx-auto">
+            <h2 className="font-bold m-4 flex justify-center text-2xl ">
               Comment les codes QR pour Suivi des présences au travail ?
             </h2>
             <div className="flex gap-4 ">
@@ -116,8 +116,8 @@ function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-items-center " style={{ marginTop: "50px" }}>
-        <div className="w-[1180px] my-auto mx-auto ">
-          <h2 className="font-bold m-4 flex justify-center ">
+        <div className=" my-auto mx-auto ">
+          <h2 className="font-bold m-4 flex justify-center text-2xl ">
             Cas d'utilisation des codes QR pour Suivi des présences
           </h2>
           <div className="flex gap-4 ">
@@ -159,13 +159,13 @@ function Home() {
        
 
       </main>
-      <footer className="flex justify-items-center  gap-4">
-        <div className="flex flex-col gap-1 text-left ml-20 mr-4 pb-8 ">
+      <footer className="flex justify-center p-4 text-white mt-10 bg-black">
+        <div className="flex flex-col gap-1 text-left ml-20 mr-4 ">
           <h2 className="font-bold ">Caracteristiques</h2>
           <span>Suivi des absences</span>
           <span>Suivi des presences</span>
         </div>
-        <div className=" flex flex-col gap-1 text-left ml-20 mr-4 pb-8 ">
+        <div className=" flex flex-col gap-1 text-left ml-20 mr-4  ">
           <h2 className="font-bold">Contact</h2>
           <div>
             {/* <img src={Linkedln} alt="Linkedln" /> */}
