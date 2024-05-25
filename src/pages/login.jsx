@@ -15,6 +15,7 @@ const MyForm = () => {
       .post("https://capstone2-c1-rebeccameme.onrender.com/login", data)
       .then((response) => {
         console.log(response.data);
+        alert(response.data.message)
           window.replace("/");
       
       })
