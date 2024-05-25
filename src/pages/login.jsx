@@ -4,28 +4,20 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const MyForm = () => {
-
   // const navigation = useNavigate();
   const [message, setMessage] = useState(false);
 
-  const {register, handleSubmit}=useForm()
+  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
-
-   await axios
+    await axios
       .post("https://capstone2-c1-rebeccameme.onrender.com/login", data)
       .then((response) => {
         console.log(response.data);
-        alert(response.data.message)
-          window.replace("/");
-      
+        alert(response.data.message);
+        window.replace("/");
       })
       .catch((error) => {
-        if (error.response) {
-          setMessage(
-            error.response.data.message || "l'utilisateur n'existe pas"
-          );
-        }
-        <Link to="/"> home</Link>
+        alert(error.response.data.message);
       });
   };
 
@@ -74,15 +66,18 @@ const MyForm = () => {
                 required: true,
               })}
             />
-           
+
             <div className="flex justify-center items-center gap-2">
-             <button type="submit" className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
+              <button
+                type="submit"
+                className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white"
+              >
                 Se connecter
-              </button> 
-               {/* <input type="submit" value="Connecter" ></input> */}
+              </button>
+              {/* <input type="submit" value="Connecter" ></input> */}
               <a href="" className="text-blue-500 ">
                 Mot de passe oublié
-              </a> 
+              </a>
             </div>
           </form>
         </div>
