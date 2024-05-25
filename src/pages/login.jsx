@@ -1,20 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const MyForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   // const navigation = useNavigate();
   const [message, setMessage] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // validation des champs du formulaire
-    axios
-      .post("http://localhost:5000/agents/login", {
-        email: email,
-        password: password,
-      })
+  const {register, handleSubmit}=useForm()
+  const onSubmit = async (data) => {
+
+   await axios
+      .post("https://capstone2-c1-rebeccameme.onrender.com/login", data)
       .then((response) => {
         console.log(response.data);
           window.replace("/");
@@ -48,7 +46,7 @@ const MyForm = () => {
             Connectez- vous à votre compte
           </h2>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             className=" flex flex-col gap-8 items-center mt-4"
           >
             <span className="text-center ">
@@ -60,26 +58,24 @@ const MyForm = () => {
             <input
               className=" input rounded text-gray-400 border border-blue-700 p-6"
               type="text"
-              name="Email"
-              defaultValue={email}
+              name="telephone"
               placeholder="Username"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              {...register("telephone", {
+                required: true,
+              })}
             />
             <input
               className="input rounded text-gray-400 border p-6 border-blue-700"
               type="text"
-              name="Password"
-              defaultValue={password}
-              placeholder="Password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              name="password"
+              placeholder="password"
+              {...register("password", {
+                required: true,
+              })}
             />
            
             <div className="flex justify-center items-center gap-2">
-             <button className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
+             <button type="submit" className="bg-[#5E5BFF] hover:bg-blue-500  py-3 px-8 rounded text-white">
                 Se connecter
               </button> 
                {/* <input type="submit" value="Connecter" ></input> */}
